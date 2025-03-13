@@ -7,7 +7,7 @@ index de5a754..0b4e971 100644
  - (void)downloadTrollStoreAndRun:(void (^)(NSString* localTrollStoreTarPath))doHandler
  {
 -	NSURL* trollStoreURL = [NSURL URLWithString:@"https://github.com/opa334/TrollStore/releases/latest/download/TrollStore.tar"];
-+	NSURL* trollStoreURL = [NSURL URLWithString:@"https://github.com/sbwml/TrollStore_zh_Hans/releases/latest/download/TrollStore.tar"];
++	NSURL* trollStoreURL = [NSURL URLWithString:@"https://github.com/xiangfeidexiaohuo/TrollStore_zh_Hans/releases/latest/download/TrollStore.tar"];
  	NSURLRequest* trollStoreRequest = [NSURLRequest requestWithURL:trollStoreURL];
  
  	NSURLSessionDownloadTask* downloadTask = [NSURLSession.sharedSession downloadTaskWithRequest:trollStoreRequest completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)

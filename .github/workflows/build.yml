@@ -38,7 +38,12 @@ jobs:
         if [ "$?" -ne 0 ]; then
           echo "Error applying TrollStore patch ..."
           exit 1
-        fi
+        fi   
+        patch -p1 < ../patches/004-TrollHelper.patch
+        if [ "$?" -ne 0 ]; then
+          echo "Error applying TrollStore patch ..."
+          exit 1
+        fi        
 
         echo WORKDIR="$(pwd)" >> "$GITHUB_ENV"
         echo VERSION="$(git describe --tags --abbrev=0)" >> "$GITHUB_ENV"
@@ -61,5 +66,12 @@ jobs:
         tag: ${{ env.VERSION }}
         commit: main
         replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.RELEASE_TOKEN }}
         artifacts: ${{ env.WORKDIR }}/_build/TrollStore.tar
+        
+    - name: Upload files
+      uses: actions/upload-artifact@main
+      with:
+        name: JD-ER1-config
+        path: ${{ env.WORKDIR }}/*
+        

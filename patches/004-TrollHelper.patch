@@ -1,0 +1,126 @@
+From 095022338d0966889158d6dc01d7bda6efa8e906 Mon Sep 17 00:00:00 2001
+From: xiangfeidexiaohuo <jsjson@163.com>
+Date: Thu, 13 Mar 2025 23:28:07 +0800
+Subject: [PATCH] Update Translation
+
+Signed-off-by: xiangfeidexiaohuo <jsjson@163.com>
+---
+ TrollHelper/TSHRootViewController.m | 30 ++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/TrollHelper/TSHRootViewController.m b/TrollHelper/TSHRootViewController.m
+index 800ce24..74074db 100644
+--- a/TrollHelper/TSHRootViewController.m
++++ b/TrollHelper/TSHRootViewController.m
+@@ -38,16 +38,16 @@
+ 		_specifiers = [NSMutableArray new];
+ 
+ 		#ifdef LEGACY_CT_BUG
+-		NSString* credits = @"Powered by Fugu15 CoreTrust & installd bugs, thanks to @LinusHenze\n\n© 2022-2024 Lars Fröder (opa334)";
++		NSString* credits = NSLocalizedString(@"Powered by Fugu15 CoreTrust & installd bugs, thanks to @LinusHenze\n\n© 2022-2024 Lars Fröder (opa334)", nil);
+ 		#else
+-		NSString* credits = @"Powered by CVE-2023-41991, originally discovered by Google TAG, rediscovered via patchdiffing by @alfiecg_dev\n\n© 2022-2024 Lars Fröder (opa334)";
++		NSString* credits = NSLocalizedString(@"Powered by CVE-2023-41991, originally discovered by Google TAG, rediscovered via patchdiffing by @alfiecg_dev\n\n© 2022-2024 Lars Fröder (opa334)", nil);
+ 		#endif
+ 
+ 		PSSpecifier* infoGroupSpecifier = [PSSpecifier emptyGroupSpecifier];
+-		infoGroupSpecifier.name = @"Info";
++		infoGroupSpecifier.name = NSLocalizedString(@"Info", nil);
+ 		[_specifiers addObject:infoGroupSpecifier];
+ 
+-		PSSpecifier* infoSpecifier = [PSSpecifier preferenceSpecifierNamed:@"TrollStore"
++		PSSpecifier* infoSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"TrollStore", nil)
+ 											target:self
+ 											set:nil
+ 											get:@selector(getTrollStoreInfoString)
+@@ -64,7 +64,7 @@
+ 		if(_newerVersion && isInstalled)
+ 		{
+ 			// Update TrollStore
+-			PSSpecifier* updateTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:[NSString stringWithFormat:@"Update TrollStore to %@", _newerVersion]
++			PSSpecifier* updateTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:[NSString stringWithFormat:NSLocalizedString(@"Update TrollStore to %@", nil), _newerVersion]
+ 										target:self
+ 										set:nil
+ 										get:nil
+@@ -86,7 +86,7 @@
+ 
+ 		if(isInstalled || trollStoreInstalledAppContainerPaths().count)
+ 		{
+-			PSSpecifier* refreshAppRegistrationsSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Refresh App Registrations"
++			PSSpecifier* refreshAppRegistrationsSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"Refresh App Registrations", nil)
+ 												target:self
+ 												set:nil
+ 												get:nil
+@@ -100,7 +100,7 @@
+ 		}
+ 		if(isInstalled)
+ 		{
+-			PSSpecifier* uninstallTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Uninstall TrollStore"
++			PSSpecifier* uninstallTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"Uninstall TrollStore", nil)
+ 										target:self
+ 										set:nil
+ 										get:nil
+@@ -115,7 +115,7 @@
+ 		}
+ 		else
+ 		{
+-			PSSpecifier* installTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Install TrollStore"
++			PSSpecifier* installTrollStoreSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"Install TrollStore", nil)
+ 												target:self
+ 												set:nil
+ 												get:nil
+@@ -135,7 +135,7 @@
+ 			[_specifiers addObject:uninstallHelperGroupSpecifier];
+ 			lastGroupSpecifier = uninstallHelperGroupSpecifier;
+ 
+-			PSSpecifier* uninstallPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Uninstall Persistence Helper"
++			PSSpecifier* uninstallPersistenceHelperSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"Uninstall Persistence Helper", nil)
+ 												target:self
+ 												set:nil
+ 												get:nil
+@@ -163,8 +163,8 @@
+ 
+ 			if(isRegistered)
+ 			{
+-				bottomText = @"This app is registered as the TrollStore persistence helper and can be used to fix TrollStore app registrations in case they revert back to \"User\" state and the apps say they're unavailable.";
+-				registerUnregisterSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Unregister Persistence Helper"
++				bottomText = NSLocalizedString(@"This app is registered as the TrollStore persistence helper and can be used to fix TrollStore app registrations in case they revert back to \"User\" state and the apps say they're unavailable.", nil);
++				registerUnregisterSpecifier = [PSSpecifier preferenceSpecifierNamed:NSLocalizedString(@"Unregister Persistence Helper", nil)
+ 												target:self
+ 												set:nil
+ 												get:nil
+@@ -178,7 +178,7 @@
+ 			}
+ 			else if(!persistenceHelperProxy)
+ 			{
+-				bottomText = @"If you want to use this app as the TrollStore persistence helper, you can register it here.";
++				bottomText = NSLocalizedString(@"If you want to use this app as the TrollStore persistence helper, you can register it here.", nil);
+ 				registerUnregisterSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Register Persistence Helper"
+ 												target:self
+ 												set:nil
+@@ -205,7 +205,7 @@
+ 		}
+ 	}
+ 	
+-	[(UINavigationItem *)self.navigationItem setTitle:@"TrollStore Helper"];
++	[(UINavigationItem *)self.navigationItem setTitle:NSLocalizedString(@"TrollStore Helper", nil)];
+ 	return _specifiers;
+ }
+ 
+@@ -214,11 +214,11 @@
+ 	NSString* version = [self getTrollStoreVersion];
+ 	if(!version)
+ 	{
+-		return @"Not Installed";
++		return NSLocalizedString(@"Not Installed", nil);
+ 	}
+ 	else
+ 	{
+-		return [NSString stringWithFormat:@"Installed, %@", version];
++		return [NSString stringWithFormat:NSLocalizedString(@"Installed, %@", nil), version];
+ 	}
+ }
+ 
+-- 
+2.34.1
+
